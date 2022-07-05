@@ -38,21 +38,21 @@ def workday_parse():
     nextSpringFestival = lunar_date(today.year + 1, 1, 1).to_datetime().date()
     distance_big_year = getWorkDays("{}-{}-{}".format(springFestival.year, springFestival.month, springFestival.day))
     distance_big_year = distance_big_year if distance_big_year > 0 else \
-        365 + distance_big_year
+        250 + distance_big_year
     #     getWorkDays("{}-{}-{}".format(nextSpringFestival.year, nextSpringFestival.month, nextSpringFestival.day))
 
     duanwuFestival = lunar_date(today.year, 5, 5).to_datetime().date()
     nextDuanwuFestival = lunar_date(today.year + 1, 5, 5).to_datetime().date()
     distance_5_5 = getWorkDays("{}-{}-{}".format(duanwuFestival.year, duanwuFestival.month, duanwuFestival.day))
     distance_5_5 = distance_5_5 if distance_5_5 > 0 else \
-        365 + distance_5_5
+        250 + distance_5_5
     #     getWorkDays("{}-{}-{}".format(nextDuanwuFestival.year, nextDuanwuFestival.month, nextDuanwuFestival.day))
 
     zhongqiuFestival = lunar_date(today.year, 8, 15).to_datetime().date()
     nextzhongqiuFestival = lunar_date(today.year + 1, 8, 15).to_datetime().date()
     distance_8_15 = getWorkDays("{}-{}-{}".format(zhongqiuFestival.year, zhongqiuFestival.month, zhongqiuFestival.day))
     distance_8_15 = distance_8_15 if distance_8_15 > 0 else \
-        365 + distance_8_15
+        250 + distance_8_15
     #     getWorkDays("{}-{}-{}".format(nextzhongqiuFestival.year, nextzhongqiuFestival.month, nextzhongqiuFestival.day))
 
     initweekday, day = calendar.monthrange(today.year, today.month)
@@ -86,7 +86,7 @@ def workday_parse():
         {"v_": distance_big_year, "title": "过年"},  # 距离过年
         {"v_": distance_4_5, "title": "清明节"},  # 距离清明
         {"v_": distance_5_1, "title": "劳动节"},  # 距离劳动
-        {"v_": distance_5_5, "title": "端午节"},  # 距离端午
+        {"v_": distance_5_5 - 1, "title": "端午节"},  # 距离端午
         {"v_": distance_8_15, "title": "中秋节"},  # 距离中秋
         {"v_": distance_10_1, "title": "国庆节"},  # 距离国庆
     ]
@@ -147,7 +147,7 @@ def time_parse(today):
         {"v_": distance_big_year, "title": "过年"},  # 距离过年
         {"v_": distance_4_5, "title": "清明节"},  # 距离清明
         {"v_": distance_5_1, "title": "劳动节"},  # 距离劳动
-        {"v_": distance_5_5, "title": "端午节"},  # 距离端午
+        {"v_": distance_5_5 - 1, "title": "端午节"},  # 距离端午
         {"v_": distance_8_15, "title": "中秋节"},  # 距离中秋
         {"v_": distance_10_1, "title": "国庆节"},  # 距离国庆
     ]
@@ -264,7 +264,7 @@ def cli(time):
 if __name__ == '__main__':
     logging.basicConfig(level=logging.NOTSET,
         format='%(asctime)s - %(filename)s[line:%(lineno)d] - %(levelname)s: %(message)s')
-    # cli(False)
+    # cli(True)
     firstTime = "10:30"
     lastTime = "19:30"
     schedule.every().monday.at(firstTime).do(cli, True)

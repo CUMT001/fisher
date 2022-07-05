@@ -1,0 +1,13 @@
+[Unit]
+Description=momoyu
+
+[Service]
+LimitNOFILE=100000
+Type=simple
+WorkingDirectory=/root/pypro/Mofish/src
+ExecStart=/root/pypro/python37/bin/python3 /root/pypro/Mofish/src/main.py
+ExecStop=/bin/kill -SIGTERM $MAINPID
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
